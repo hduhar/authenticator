@@ -15,11 +15,11 @@ import secretGeneratorImpl.SecretGen;
 import secretGeneratorImpl.TotpImpl;
 import systemClipboard.CodeKeyToClipboard;
 
-@Component("keyGrabber")
+@Component("KeyGrabber")
 public class KeyGrabber implements NativeKeyListener{
 	
 	@Autowired
-	@Qualifier("codeKeyToClipboard")
+	@Qualifier("CodeKeyToClipboard")
 	CodeKeyToClipboard codeKeyToClipboard;
 
 	@Autowired

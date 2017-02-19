@@ -8,8 +8,6 @@ public class Starter {
 	public static void main(String[] args) throws Exception {
 
 		ApplicationContext appCon = (ApplicationContext)new ClassPathXmlApplicationContext("application-config.xml");
-		appCon.getBean("keyGrabber");
-		
 
 		System.out.println("hello");
 	}

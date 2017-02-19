@@ -6,7 +6,7 @@ import java.awt.datatransfer.StringSelection;
 
 import org.springframework.stereotype.Component;
 
-@Component("codeKeyToClipboard")
+@Component("CodeKeyToClipboard")
 public class CodeKeyToClipboard {
 	private Clipboard clpbrd ;
 
