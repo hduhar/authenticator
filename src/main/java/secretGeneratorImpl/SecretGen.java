@@ -1,44 +1,53 @@
-package authenticator.secretGeneratorImpl;
+package secretGeneratorImpl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.stereotype.Component;
+
+import secretGeneratorConstants.Constants;
+
+@Component("SecretGen")
 public class SecretGen {
 
 	private String secret;
 
 	private String secretFilePath;
 
-	public String getSecretFilePath() {
-		return secretFilePath;
+	public SecretGen() {
+		String userHome = System.getProperty("user.home");
+		StringBuilder secretFilePath = new StringBuilder(userHome).append(Constants.PATH_SEPARATOR)
+				.append(Constants.GOOGLE_KEY);
+		this.secretFilePath = secretFilePath.toString();
+		setSecretFromFile();
 	}
 
 	public void setSecretFilePath(String secretFilePath) {
 		this.secretFilePath = secretFilePath;
 	}
 
+	public String getSecretFilePath() {
+		return secretFilePath;
+	}
+
 	public String getSecret() {
 		return secret;
 	}
 
-	public void setSecret(String secret) {
-		this.secret = secret;
-	}
-
-	public void setSecretFromFile(){
+	public void setSecretFromFile() {
 		BufferedReader bufferedReader = null;
-		try{
+		try {
 			bufferedReader = new BufferedReader(new FileReader(secretFilePath));
 			String secretLine = bufferedReader.readLine();
-			secret = secretLine;
-			
-		} catch(FileNotFoundException e){
+			this.secret = secretLine;
+
+		} catch (FileNotFoundException e) {
 			System.out.println("Exception FileNotFound " + e);
-		} catch(IOException e){
+		} catch (IOException e) {
 			System.out.println("Exception IOException" + e);
-		} finally{
+		} finally {
 			try {
 				bufferedReader.close();
 			} catch (IOException e) {
@@ -47,5 +56,4 @@ public class SecretGen {
 			}
 		}
 	}
-
 }
